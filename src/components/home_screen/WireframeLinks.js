@@ -24,7 +24,7 @@ class WireframeLinks extends React.Component {
     }
 
     render() {
-        let wireframes = this.props.wireframes;
+        let {wireframes, auth} = this.props;
         if(wireframes){
             console.log(wireframes)
             // wireframes = wireframes.filter((list, index) => wireframes.indexOf(list)===index)
@@ -44,9 +44,11 @@ class WireframeLinks extends React.Component {
         return (
             <div className="todo-lists section">
                 {wireframes && wireframes.map(wireframe => (
-                    <Link to={'/wireframe/' + wireframe.id} key={wireframe.id} onClick={()=>this.handleClick(wireframe)}>
-                        <WireframeCard wireframe={wireframe} />
-                    </Link>
+                    wireframe.authorId === auth.uid ?
+                        <Link to={'/wireframe/' + wireframe.id} key={wireframe.id} onClick={()=>this.handleClick(wireframe)}>
+                            <WireframeCard wireframe={wireframe} />
+                        </Link>
+                    : <div></div>
                 ))}
             </div>
         );
