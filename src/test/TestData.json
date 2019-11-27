@@ -1,0 +1,282 @@
+{
+    "wireframes": [
+        {
+            "key": 0,
+            "name": "Yelp Clone",
+            "author": "Boren Wang",
+            "height": 500,
+            "width": 300,
+            "controls": [
+                {
+                    "key": 0,
+                    "type": "textfield",
+                    "text": "username",
+                    "fontSize": 30,
+                    "fontColor": "black",
+                    "backgroundColor": "white",
+                    "borderColor": "red",
+                    "borderThickness": 5, 
+                    "borderRadius": 3, 
+                    "upLeft": {
+                        "x": 10,
+                        "y": 15 
+                    },
+                    "upRight": {
+                        "x": 20,
+                        "y": 15 
+                    },
+                    "downLeft": {
+                        "x": 10,
+                        "y": 20 
+                    },
+                    "downRight": {
+                        "x": 20,
+                        "y": 20 
+                    }
+                },
+                {
+                    "key": 1,
+                    "type": "button",
+                    "text": "submit",
+                    "fontSize": 30,
+                    "fontColor": "black",
+                    "backgroundColor": "white",
+                    "borderColor": "red",
+                    "borderThickness": 5, 
+                    "borderRadius": 3, 
+                    "upLeft": {
+                        "x": 10,
+                        "y": 15 
+                    },
+                    "upRight": {
+                        "x": 30,
+                        "y": 15 
+                    },
+                    "downLeft": {
+                        "x": 10,
+                        "y": 30
+                    },
+                    "downRight": {
+                        "x": 30,
+                        "y": 30
+                    }
+                }
+            ]
+        },
+        {
+            "key": 1,
+            "name": "Twitter Clone",
+            "author": "Boren Wang",
+            "height": 500,
+            "width": 500,
+            "controls": [
+                {
+                    "key": 0,
+                    "type": "label",
+                    "text": "password",
+                    "fontSize": 30,
+                    "fontColor": "black",
+                    "backgroundColor": "white",
+                    "borderColor": "red",
+                    "borderThickness": 5, 
+                    "borderRadius": 3, 
+                    "upLeft": {
+                        "x": 10,
+                        "y": 15 
+                    },
+                    "upRight": {
+                        "x": 20,
+                        "y": 15 
+                    },
+                    "downLeft": {
+                        "x": 10,
+                        "y": 20 
+                    },
+                    "downRight": {
+                        "x": 20,
+                        "y": 20 
+                    }
+                },
+                {
+                    "key": 1,
+                    "type": "container",
+                    "text": "",
+                    "fontSize": 30,
+                    "fontColor": "black",
+                    "backgroundColor": "white",
+                    "borderColor": "red",
+                    "borderThickness": 5, 
+                    "borderRadius": 3, 
+                    "upLeft": {
+                        "x": 10,
+                        "y": 15 
+                    },
+                    "upRight": {
+                        "x": 30,
+                        "y": 15 
+                    },
+                    "downLeft": {
+                        "x": 10,
+                        "y": 30
+                    },
+                    "downRight": {
+                        "x": 30,
+                        "y": 30
+                    }
+                }
+            ]
+        },
+        {
+            "key": 2,
+            "name": "Facebook Clone",
+            "author": "Tywin Lannister",
+            "height": 500,
+            "width": 500,
+            "controls": [
+                {
+                    "key": 0,
+                    "type": "label",
+                    "text": "password",
+                    "fontSize": 30,
+                    "fontColor": "black",
+                    "backgroundColor": "white",
+                    "borderColor": "red",
+                    "borderThickness": 5, 
+                    "borderRadius": 3, 
+                    "upLeft": {
+                        "x": 10,
+                        "y": 15 
+                    },
+                    "upRight": {
+                        "x": 20,
+                        "y": 15 
+                    },
+                    "downLeft": {
+                        "x": 10,
+                        "y": 20 
+                    },
+                    "downRight": {
+                        "x": 20,
+                        "y": 20 
+                    }
+                },
+                {
+                    "key": 1,
+                    "type": "container",
+                    "text": "",
+                    "fontSize": 30,
+                    "fontColor": "black",
+                    "backgroundColor": "white",
+                    "borderColor": "red",
+                    "borderThickness": 5, 
+                    "borderRadius": 3, 
+                    "upLeft": {
+                        "x": 10,
+                        "y": 15 
+                    },
+                    "upRight": {
+                        "x": 30,
+                        "y": 15 
+                    },
+                    "downLeft": {
+                        "x": 10,
+                        "y": 30
+                    },
+                    "downRight": {
+                        "x": 30,
+                        "y": 30
+                    }
+                }
+            ]
+        },
+        {
+            "key":3,
+            "name": "Google Clone",
+            "author": "Jaime Lannister",
+            "height": 500,
+            "width": 500,
+            "controls": [
+                {
+                    "key": 0,
+                    "type": "label",
+                    "text": "password",
+                    "fontSize": 30,
+                    "fontColor": "black",
+                    "backgroundColor": "white",
+                    "borderColor": "red",
+                    "borderThickness": 5, 
+                    "borderRadius": 3, 
+                    "upLeft": {
+                        "x": 10,
+                        "y": 15 
+                    },
+                    "upRight": {
+                        "x": 20,
+                        "y": 15 
+                    },
+                    "downLeft": {
+                        "x": 10,
+                        "y": 20 
+                    },
+                    "downRight": {
+                        "x": 20,
+                        "y": 20 
+                    }
+                },
+                {
+                    "key": 1,
+                    "type": "container",
+                    "text": "",
+                    "fontSize": 30,
+                    "fontColor": "black",
+                    "backgroundColor": "white",
+                    "borderColor": "red",
+                    "borderThickness": 5, 
+                    "borderRadius": 3, 
+                    "upLeft": {
+                        "x": 10,
+                        "y": 15 
+                    },
+                    "upRight": {
+                        "x": 30,
+                        "y": 15 
+                    },
+                    "downLeft": {
+                        "x": 10,
+                        "y": 30
+                    },
+                    "downRight": {
+                        "x": 30,
+                        "y": 30
+                    }
+                }
+            ]
+        }
+    ],
+    "users": [
+        {
+            "key": 0,
+            "type": "Administrator",
+            "email": "borwang@cs.stonybrook.edu",
+            "password": "123456",
+            "firstName": "Boren",
+            "lastName": "Wang"
+        },
+        {
+            "key": 1,
+            "type": "Designer",
+            "email": "tywin@harvard.edu",
+            "password": "123456",
+            "firstName": "tywin",
+            "lastName": "Lannister"
+        },
+        {
+            "key": 2,
+            "type": "Designer",
+            "email": "jaime@stanford.edu",
+            "password": "123456",
+            "firstName": "Jaime",
+            "lastName": "Lannister"
+        }
+    ]
+}
