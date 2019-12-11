@@ -2,9 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import WireframeCard from './WireframeCard';
-import {editHandler} from "../../store/database/asynchHandler"
 import { firestoreConnect } from 'react-redux-firebase';
+import {Button, Icon, Modal} from 'react-materialize'
+import WireframeCard from './WireframeCard';
+import {editHandler, deleteHandler} from "../../store/database/asynchHandler"
 
 class WireframeLinks extends React.Component {
     constructor() {
@@ -40,14 +41,37 @@ class WireframeLinks extends React.Component {
             }
         }
         
-
+        const trigger = 
+        <Button
+            className="pink pulse delete-button"
+            floating
+            icon={<Icon>delete_forever</Icon>}
+            small
+            node="button"
+            waves="light"
+        />
         return (
             <div className="todo-lists section">
                 {wireframes && wireframes.map(wireframe => (
                     wireframe.authorId === auth.uid ?
-                        <Link to={'/wireframe/' + wireframe.id} key={wireframe.id} onClick={()=>this.handleClick(wireframe)}>
-                            <WireframeCard wireframe={wireframe} />
-                        </Link>
+                        <div>
+                            <Link to={'/wireframe/' + wireframe.id} key={wireframe.id} onClick={()=>this.handleClick(wireframe)}>
+                                <WireframeCard wireframe={wireframe} />
+                            </Link>
+                            <Modal 
+                                header="Delete the wireframe?" 
+                                trigger={trigger} 
+                                actions={
+                                    <div>
+                                        <Button className="red" onClick={ () => this.props.deleteWireframe(wireframe) }>Yes</Button>
+                                        <Button modal="close">No</Button>
+                                    </div>
+                                }
+                            >
+                                <p><strong>Are you sure to delete this wireframe?</strong></p>
+                                <p>The wireframe will not be retrivable.</p>
+                            </Modal>
+                        </div>
                     : <div></div>
                 ))}
             </div>
@@ -63,7 +87,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    editWireframe: (wireframe) => dispatch(editHandler(wireframe))
+    editWireframe: (wireframe) => dispatch(editHandler(wireframe)),
+    deleteWireframe: (wireframe) => dispatch(deleteHandler(wireframe))
 })
 
 // export default compose(

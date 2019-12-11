@@ -68,7 +68,6 @@ export const deleteHandler = (wireframe) => {
     firestore.collection('wireframes').doc(wireframe.id).delete()
       .then(()=> dispatch({type: "DELETE_LIST", wireframe}) )
       .catch(error => dispatch({type: "DELETE_LIST_ERROR", error}))
-    
   }
 }
 
