@@ -86,12 +86,20 @@ class WireframeScreen extends Component {
         } 
     }
 
-    handleClickControl(control) { // ?????
+    handleClickControl(e, control) { // ?????
+        e.stopPropagation()
         this.setState({
             ...this.state,
             selected: control
         })        
         // console.log(this.state.selected)
+    }
+
+    onClickEmpty() {
+        this.setState({
+            ...this.state,
+            selected: null
+        }) 
     }
 
     handleChange = (e, controlId) => {
@@ -112,7 +120,7 @@ class WireframeScreen extends Component {
                 if(prevState.controls[i].id === controlId){
                     prevState.controls[i].x = d.x
                     prevState.controls[i].y = d.y
-                    console.log(prevState)
+                    // console.log(prevState)
                 }
             }
             return prevState
@@ -125,11 +133,11 @@ class WireframeScreen extends Component {
                 if(prevState.controls[i].id === controlId){
                     prevState.controls[i].width = ref.style.width
                     prevState.controls[i].height = ref.style.height
-                    console.log("prevState after resizing: ",prevState)
+                    // console.log("prevState after resizing: ",prevState)
                 }
             }
             return prevState
-        }, () => console.log("state after resizing:", this.state));
+        });
         // this.setState({
         //     width: ref.style.width,
         //     height: ref.style.height,
@@ -153,8 +161,8 @@ class WireframeScreen extends Component {
                 return prevState
             }, () => console.log("after duplicate",this.state))
         }
-        else if(e.keyCode === 46 || (e.keyCode===8&&e.ctrlKey)) { // delete
-            e.preventDefault()
+        else if(e.keyCode === 46 || (e.keyCode===8&&e.ctrlKey) || (e.keyCode===8&&e.metaKey)) { // delete
+            // e.preventDefault()
             let control = {...this.state.selected}
             this.setState(prevState => {
                 for(var i=0; i<prevState.controls.length; i++) {
@@ -223,12 +231,16 @@ class WireframeScreen extends Component {
                     />
                 </div>
 
-                <div className="middle" style={{
+                <div 
+                    className="middle" 
+                    style={{
                     float: "left",
                     width: "50%",
                     height: "100vh",
                     border: "2px solid black"
-                }}>
+                    }}
+                    onClick={this.onClickEmpty.bind(this)}
+                >
                     <Controls 
                         controls={this.state.controls} 
                         handleClickControl={this.handleClickControl.bind(this)}

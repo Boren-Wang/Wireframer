@@ -13,7 +13,9 @@ export default class Controls extends Component {
                 {controls && controls.map(control => {
                     if(control.type==="container") {
                         return (
-                            <div onClick={()=>this.props.handleClickControl(control)}>
+                            <div 
+                                onClick={(e)=>this.props.handleClickControl(e, control)}
+                            >
                                 <Container 
                                     control={control}
                                     onDragStop={this.props.onDragStop}
