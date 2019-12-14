@@ -142,6 +142,7 @@ class WireframeScreen extends Component {
             return
         }
         if (e.keyCode === 68 && e.ctrlKey) { // control + d
+            e.preventDefault()
             let newControl = {...this.state.selected}
             newControl.id = this.state.controls.length===0?0:this.state.controls[this.state.controls.length-1].id+1
             newControl.key = this.state.controls.length===0?0:this.state.controls[this.state.controls.length-1].key+1
@@ -152,14 +153,14 @@ class WireframeScreen extends Component {
                 return prevState
             }, () => console.log("after duplicate",this.state))
         }
-        else if(e.keyCode === 8) { // delete 
-            alert("!!!")
+        else if(e.keyCode === 46 || (e.keyCode===8&&e.ctrlKey)) { // delete
             e.preventDefault()
             let control = {...this.state.selected}
             this.setState(prevState => {
                 for(var i=0; i<prevState.controls.length; i++) {
                     if(prevState.controls[i].id === control.id){
                         prevState.controls.splice(i, 1)
+                        prevState.selected = null
                     }
                 }
                 return prevState
