@@ -15,6 +15,13 @@ class WireframeScreen extends Component {
         controls: this.props.wireframe.controls
     }
 
+    componentDidMount() {
+        document.addEventListener('keydown', this.handleKeyPress);
+    }
+    
+    componentWillUnmount() {
+        document.removeEventListener('keydown', this.handleKeyPress);
+    }
     // handleChange = (e) => {
     //     const { target } = e;
     //     this.setState(prevState => {
@@ -32,13 +39,17 @@ class WireframeScreen extends Component {
             "id": this.state.controls.length===0?0:this.state.controls[this.state.controls.length-1].id+1,
             "key": this.state.controls.length===0?0:this.state.controls[this.state.controls.length-1].key+1,
             "type": "",
-            "text": "",
-            "fontSize": 30,
-            "fontColor": "black",
-            "backgroundColor": "white",
-            "borderColor": "black",
-            "borderThickness": 5, 
-            "borderRadius": 3, 
+            "text": "New Control",
+            "fontSize": 12,
+            "textColor": "#000000",
+            "backgroundColor": "#ffffff",
+            "borderColor": "#000000",
+            "borderThickness": 1, 
+            "borderRadius": 1, 
+            "width": 100,
+            "height": 50,
+            "x": 0,
+            "y": 0
         }
         if(type==="container") {
             this.setState(prevState => {
@@ -80,7 +91,7 @@ class WireframeScreen extends Component {
             ...this.state,
             selected: control
         })        
-        console.log(this.state.selected)
+        // console.log(this.state.selected)
     }
 
     handleChange = (e, controlId) => {
@@ -93,6 +104,76 @@ class WireframeScreen extends Component {
             }
             return prevState
         });
+    }
+
+    onDragStop = (e, d, controlId) => {
+        this.setState(prevState => {
+            for(var i=0; i<prevState.controls.length; i++) {
+                if(prevState.controls[i].id === controlId){
+                    prevState.controls[i].x = d.x
+                    prevState.controls[i].y = d.y
+                    console.log(prevState)
+                }
+            }
+            return prevState
+        });
+    }
+
+    onResizeStop = (e, direction, ref, delta, position, controlId) => {
+        this.setState(prevState => {
+            for(var i=0; i<prevState.controls.length; i++) {
+                if(prevState.controls[i].id === controlId){
+                    prevState.controls[i].width = ref.style.width
+                    prevState.controls[i].height = ref.style.height
+                    console.log("prevState after resizing: ",prevState)
+                }
+            }
+            return prevState
+        }, () => console.log("state after resizing:", this.state));
+        // this.setState({
+        //     width: ref.style.width,
+        //     height: ref.style.height,
+        //     ...position
+        // });
+    }
+
+    handleKeyPress = (e) => {
+        if(this.state.selected===null){
+            return
+        }
+        if (e.keyCode === 68 && e.ctrlKey) { // control + d
+            let newControl = {...this.state.selected}
+            newControl.id = this.state.controls.length===0?0:this.state.controls[this.state.controls.length-1].id+1
+            newControl.key = this.state.controls.length===0?0:this.state.controls[this.state.controls.length-1].key+1
+            newControl.x = newControl.x+100
+            newControl.y = newControl.y+100
+            this.setState(prevState => {
+                prevState.controls.push(newControl)
+                return prevState
+            }, () => console.log("after duplicate",this.state))
+        }
+        else if(e.keyCode === 8) { // delete 
+            alert("!!!")
+            e.preventDefault()
+            let control = {...this.state.selected}
+            this.setState(prevState => {
+                for(var i=0; i<prevState.controls.length; i++) {
+                    if(prevState.controls[i].id === control.id){
+                        prevState.controls.splice(i, 1)
+                    }
+                }
+                return prevState
+            })
+        }
+    }
+    OnDuplicate = (control) => {
+        let newControl = {...control}
+        newControl.x+=100
+        newControl.y+=100
+        this.setState(prevState => {
+            prevState.controls.push(newControl)
+            return prevState
+        })
     }
 
     handleDeleteControl = (controlId) => {
@@ -146,7 +227,14 @@ class WireframeScreen extends Component {
                     width: "50%",
                     height: "100vh",
                     border: "2px solid black"
-                }}><Controls controls={this.state.controls} handleClickControl={this.handleClickControl.bind(this)}/></div>
+                }}>
+                    <Controls 
+                        controls={this.state.controls} 
+                        handleClickControl={this.handleClickControl.bind(this)}
+                        onDragStop={this.onDragStop.bind(this)}
+                        onResizeStop={this.onResizeStop.bind(this)}
+                    />
+                </div>
 
                 <div style={divStyle}><RightSubscreen control={this.state.selected} handleChange={this.handleChange.bind(this)}/></div>
             </div>

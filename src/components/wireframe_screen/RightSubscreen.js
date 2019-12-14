@@ -30,8 +30,6 @@ export default class RightSubscreen extends Component {
             "borderThickness": "", 
             "borderRadius": "", 
         }
-        console.log("Right Screen", control)
-        console.log("Props", this.props.control)
         return (
             <div class="container">
                 <h3>Properties</h3>
