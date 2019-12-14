@@ -47,3 +47,7 @@ div.banner {
 .card {
   background-color: var(--swatch-complement);
 }
+
+.fas {
+  font-size: medium;
+}

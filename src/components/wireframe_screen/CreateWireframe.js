@@ -49,7 +49,7 @@ class CreateList extends Component {
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit} className="white">
-          <h5 className="grey-text text-darken-3">Create a new wireframe</h5>
+          <h5 className="grey-text text-darken-3">Create a New Wireframe</h5>
           <div className="input-field">
             <label htmlFor="name" className="active">Name</label>
             <input type="name" name="name" id="name" onChange={this.handleChange} />

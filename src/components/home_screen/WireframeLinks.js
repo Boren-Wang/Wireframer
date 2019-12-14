@@ -43,7 +43,7 @@ class WireframeLinks extends React.Component {
         
         const trigger = 
         <Button
-            className="pink pulse delete-button"
+            className="pink pulse delete_button"
             floating
             icon={<Icon>delete_forever</Icon>}
             small

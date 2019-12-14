@@ -4,13 +4,12 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firebaseConnect } from 'react-redux-firebase';
 import DatabaseTester from './test/DatabaseTester'
+import Navbar from './components/navbar/Navbar.js';
 import HomeScreen from './components/home_screen/HomeScreen'
 import RegisterScreen from './components/register_screen/RegisterScreen.js';
 import LoginScreen from './components/login_screen/LoginScreen.js';
 import CreateWireframe from './components/wireframe_screen/CreateWireframe.js';
-
-
-import Navbar from './components/navbar/Navbar.js';
+import WireframeScreen from './components/wireframe_screen/WireframeScreen';
 
 class App extends Component {
   render() {
@@ -29,10 +28,7 @@ class App extends Component {
               <Route path="/register" component={RegisterScreen} />
               <Route path="/login" component={LoginScreen} />
               <Route path="/create" component={CreateWireframe} />
-              
-              
-              
-              
+              <Route path="/wireframe/:id" component={WireframeScreen} />
             </Switch>
           </div>
         </BrowserRouter>

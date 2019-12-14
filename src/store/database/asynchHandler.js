@@ -71,35 +71,35 @@ export const deleteHandler = (wireframe) => {
   }
 }
 
-export const createItemHandler = (wireframe, newItem) => {
-  return (dispatch, getState, {getFirebase, getFirestore}) => {
-    wireframe.items.push(newItem)
-    const firestore = getFirestore()
-    firestore.collection('wireframes').doc(wireframe.id).update(wireframe)
-      .then(()=> dispatch({type: "CREATE_ITEM", newItem}) )
-      .catch(error => dispatch({type: "CREATE_ITEM_ERROR", error}))
-  }
-}
+// export const createcontrolHandler = (wireframe, newcontrol) => {
+//   return (dispatch, getState, {getFirebase, getFirestore}) => {
+//     wireframe.controls.push(newcontrol)
+//     const firestore = getFirestore()
+//     firestore.collection('wireframes').doc(wireframe.id).update(wireframe)
+//       .then(()=> dispatch({type: "CREATE_control", newcontrol}) )
+//       .catch(error => dispatch({type: "CREATE_control_ERROR", error}))
+//   }
+// }
 
-export const editItemHandler = (wireframe, newItem) => {
-  return (dispatch, getState, {getFirebase, getFirestore}) => {
-    // wireframe.items[newItem.id] = newItem
-    let index = wireframe.items.indexOf(wireframe.items.filter(item => newItem.id == item.id)[0])
-    wireframe.items[index] = newItem
-    const firestore = getFirestore()
-    firestore.collection('wireframes').doc(wireframe.id).update(wireframe)
-      .then(()=> dispatch({type: "EDIT_ITEM", newItem}) )
-      .catch(error => dispatch({type: "EDIT_ITEM_ERROR", error}))
-  }
-}
+// export const editcontrolHandler = (wireframe, newcontrol) => {
+//   return (dispatch, getState, {getFirebase, getFirestore}) => {
+//     // wireframe.controls[newcontrol.id] = newcontrol
+//     let index = wireframe.controls.indexOf(wireframe.controls.filter(control => newcontrol.id == control.id)[0])
+//     wireframe.controls[index] = newcontrol
+//     const firestore = getFirestore()
+//     firestore.collection('wireframes').doc(wireframe.id).update(wireframe)
+//       .then(()=> dispatch({type: "EDIT_control", newcontrol}) )
+//       .catch(error => dispatch({type: "EDIT_control_ERROR", error}))
+//   }
+// }
 
-export const deleteItemHandler = (wireframe, item) => {
-  return (dispatch, getState, {getFirebase, getFirestore}) => {
-    // wireframe.items[item.id] = null
-    wireframe.items = wireframe.items.filter((i)=>i.id!==item.id) 
-    const firestore = getFirestore()
-    firestore.collection('wireframes').doc(wireframe.id).update(wireframe)
-      .then(()=> dispatch({type: "DELETE_ITEM", item}) )
-      .catch(error => dispatch({type: "DELETE_ITEM_ERROR", error}))
-  }
-}
+// export const deletecontrolHandler = (wireframe, control) => {
+//   return (dispatch, getState, {getFirebase, getFirestore}) => {
+//     // wireframe.controls[control.id] = null
+//     wireframe.controls = wireframe.controls.filter((i)=>i.id!==control.id) 
+//     const firestore = getFirestore()
+//     firestore.collection('wireframes').doc(wireframe.id).update(wireframe)
+//       .then(()=> dispatch({type: "DELETE_control", control}) )
+//       .catch(error => dispatch({type: "DELETE_control_ERROR", error}))
+//   }
+// }
