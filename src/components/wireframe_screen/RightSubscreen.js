@@ -32,7 +32,7 @@ export default class RightSubscreen extends Component {
         }
         return (
             <div class="container">
-                <h3>Properties</h3>
+                <h5>Properties</h5>
 
                 <div className="input-field">
                     <label htmlFor="text" className="active">Text</label>

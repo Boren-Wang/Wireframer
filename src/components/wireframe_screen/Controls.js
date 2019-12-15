@@ -11,6 +11,10 @@ export default class Controls extends Component {
         return (
             <div>
                 {controls && controls.map(control => {
+                    let selected = false
+                    if(control === this.props.selected){
+                        selected = true
+                    }
                     if(control.type==="container") {
                         return (
                             <div 
@@ -18,17 +22,54 @@ export default class Controls extends Component {
                             >
                                 <Container 
                                     control={control}
+                                    selected={selected}
                                     onDragStop={this.props.onDragStop}
                                     onResizeStop={this.props.onResizeStop}
                                 />
                             </div>
                         )
                     } else if(control.type==="label"){
-                        return (<div onClick={()=>this.props.handleClickControl(control)}><Label control={control}/></div>)
+                        return (
+                            <div 
+                                onClick={(e)=>this.props.handleClickControl(e, control)}
+                                style={{
+                                }}
+                            >
+                                <Label
+                                    control={control}
+                                    selected={selected}
+                                    onDragStop={this.props.onDragStop}
+                                    onResizeStop={this.props.onResizeStop}
+                                />
+                            </div>
+                        )
                     } else if(control.type==="button"){
-                        return (<div onClick={()=>this.props.handleClickControl(control)}><Button control={control}/></div>) 
+                        return (
+                            <div 
+                                onClick={(e)=>this.props.handleClickControl(e, control)}
+                            >
+                                <Button 
+                                    control={control}
+                                    selected={selected}
+                                    onDragStop={this.props.onDragStop}
+                                    onResizeStop={this.props.onResizeStop}
+                                />
+                            </div>
+                        )
                     } else if(control.type==="textfield"){
-                        return (<div onClick={()=>this.props.handleClickControl(control)}><Textfield control={control}/></div>)
+                        return (
+                            <div 
+                                onClick={(e)=>this.props.handleClickControl(e, control)}
+                                // style={{textAlign: "left"}}
+                            >
+                                <Textfield
+                                    control={control}
+                                    selected={selected}
+                                    onDragStop={this.props.onDragStop}
+                                    onResizeStop={this.props.onResizeStop}
+                                />
+                            </div>
+                        )
                     } else {
                         return <div></div>
                     }

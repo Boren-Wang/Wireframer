@@ -12,7 +12,9 @@ class WireframeScreen extends Component {
     state = {
         wireframe: this.props.wireframe,
         selected: null,
-        controls: this.props.wireframe.controls
+        controls: this.props.wireframe.controls,
+        scaleIndicator: 1,
+        changed: false
     }
 
     componentDidMount() {
@@ -22,65 +24,144 @@ class WireframeScreen extends Component {
     componentWillUnmount() {
         document.removeEventListener('keydown', this.handleKeyPress);
     }
-    // handleChange = (e) => {
+
+    // onDimensionChange = (e) => {
     //     const { target } = e;
     //     this.setState(prevState => {
     //         let wireframe = prevState.wireframe
     //         wireframe[target.id] = target.value
-    //         wireframe["editedAt"] = new Date()
+    //         // wireframe["editedAt"] = new Date()
     //         return {
     //             wireframe
     //         }
-    //     }, ()=>this.props.editwireframe(this.state.wireframe));
+    //     });
     // }
 
+    onUpdate(width, height, name) {
+        this.setState(prevState => {
+            prevState.wireframe.width = width
+            prevState.wireframe.height = height
+            prevState.wireframe.name = name
+            prevState.changed=true
+            return prevState
+        })
+    }
+
+    onZoomIn() {
+        this.setState(prevState => {
+            prevState.scaleIndicator = prevState.scaleIndicator*2
+            prevState.changed=true
+            return prevState
+        })
+    }
+
+    onZoomOut() {
+        this.setState(prevState => {
+            prevState.scaleIndicator = prevState.scaleIndicator/2
+            prevState.changed=true
+            return prevState
+        })
+    }
+
     handleCreateControl = (type) => {
-        const newControl = {
-            "id": this.state.controls.length===0?0:this.state.controls[this.state.controls.length-1].id+1,
-            "key": this.state.controls.length===0?0:this.state.controls[this.state.controls.length-1].key+1,
-            "type": "",
-            "text": "New Control",
-            "fontSize": 12,
-            "textColor": "#000000",
-            "backgroundColor": "#ffffff",
-            "borderColor": "#000000",
-            "borderThickness": 1, 
-            "borderRadius": 1, 
-            "width": 100,
-            "height": 50,
-            "x": 0,
-            "y": 0
-        }
         if(type==="container") {
+            const newControl = {
+                "id": this.state.controls.length===0?0:this.state.controls[this.state.controls.length-1].id+1,
+                "key": this.state.controls.length===0?0:this.state.controls[this.state.controls.length-1].key+1,
+                "type": "container",
+                "text": "New Container",
+                "fontSize": 12,
+                "textColor": "#000000",
+                "backgroundColor": "#ffffff",
+                "borderColor": "#000000",
+                "borderThickness": 3, 
+                "borderRadius": 10, 
+                "width": 300,
+                "height": 300,
+                "x": 0,
+                "y": 0
+            }
             this.setState(prevState => {
                 prevState.controls.push({
                     ...newControl,
                     type: "container"
                 })
+                prevState.changed=true
                 return prevState
             })
         } else if(type==="label"){
+            const newControl = {
+                "id": this.state.controls.length===0?0:this.state.controls[this.state.controls.length-1].id+1,
+                "key": this.state.controls.length===0?0:this.state.controls[this.state.controls.length-1].key+1,
+                "type": "label",
+                "text": "Label",
+                "fontSize": 12,
+                "textColor": "#000000",
+                "backgroundColor": "#EEEEDD",
+                "borderColor": "#000000",
+                "borderThickness": 0, 
+                "borderRadius": 0, 
+                "width": 50,
+                "height": 22,
+                "x": 0,
+                "y": 0
+            }
             this.setState(prevState => {
                 prevState.controls.push({
                     ...newControl,
                     type: "label"
                 })
+                prevState.changed=true
                 return prevState
             })
         } else if(type==="button"){
+            const newControl = {
+                "id": this.state.controls.length===0?0:this.state.controls[this.state.controls.length-1].id+1,
+                "key": this.state.controls.length===0?0:this.state.controls[this.state.controls.length-1].key+1,
+                "type": "button",
+                "text": "Submit",
+                "fontSize": 6,
+                "textColor": "#000000",
+                "backgroundColor": "#d3d3d3",
+                "borderColor": "#000000",
+                "borderThickness": 1, 
+                "borderRadius": 3, 
+                "width": 50,
+                "height": 22,
+                "x": 0,
+                "y": 0
+            }
             this.setState(prevState => {
                 prevState.controls.push({
                     ...newControl,
                     type: "button"
                 })
+                prevState.changed=true
                 return prevState
             })
         } else{
+            const newControl = {
+                "id": this.state.controls.length===0?0:this.state.controls[this.state.controls.length-1].id+1,
+                "key": this.state.controls.length===0?0:this.state.controls[this.state.controls.length-1].key+1,
+                "type": "textfield",
+                "text": "input",
+                "fontSize": 12,
+                "textColor": "#A9A9A9",
+                "backgroundColor": "#ffffff",
+                "borderColor": "#000000",
+                "borderThickness": 1, 
+                "borderRadius": 5, 
+                "width": 150,
+                "height": 20,
+                "x": 0,
+                "y": 0
+            }
             this.setState(prevState => {
                 prevState.controls.push({
                     ...newControl,
                     type: "textfield"
                 })
+                prevState.changed=true
                 return prevState
             })
         } 
@@ -90,7 +171,8 @@ class WireframeScreen extends Component {
         e.stopPropagation()
         this.setState({
             ...this.state,
-            selected: control
+            selected: control,
+            changed: true
         })        
         // console.log(this.state.selected)
     }
@@ -98,7 +180,8 @@ class WireframeScreen extends Component {
     onClickEmpty() {
         this.setState({
             ...this.state,
-            selected: null
+            selected: null,
+            changed: true
         }) 
     }
 
@@ -110,6 +193,7 @@ class WireframeScreen extends Component {
                     prevState.controls[i][target.id] = target.value
                 }
             }
+            prevState.changed=true
             return prevState
         });
     }
@@ -123,6 +207,7 @@ class WireframeScreen extends Component {
                     // console.log(prevState)
                 }
             }
+            prevState.changed=true
             return prevState
         });
     }
@@ -136,6 +221,7 @@ class WireframeScreen extends Component {
                     // console.log("prevState after resizing: ",prevState)
                 }
             }
+            prevState.changed=true
             return prevState
         });
         // this.setState({
@@ -158,6 +244,7 @@ class WireframeScreen extends Component {
             newControl.y = newControl.y+100
             this.setState(prevState => {
                 prevState.controls.push(newControl)
+                prevState.changed=true
                 return prevState
             }, () => console.log("after duplicate",this.state))
         }
@@ -171,6 +258,7 @@ class WireframeScreen extends Component {
                         prevState.selected = null
                     }
                 }
+                prevState.changed=true
                 return prevState
             })
         }
@@ -181,6 +269,7 @@ class WireframeScreen extends Component {
         newControl.y+=100
         this.setState(prevState => {
             prevState.controls.push(newControl)
+            prevState.changed=true
             return prevState
         })
     }
@@ -192,6 +281,7 @@ class WireframeScreen extends Component {
                     prevState.controls.splice(i, 1)
                 }
             }
+            prevState.changed=true
             return prevState
         });
     }
@@ -217,7 +307,7 @@ class WireframeScreen extends Component {
         //     return <React.Fragment />
         const divStyle = {
             float: "left",
-            width: "25%",
+            width: "22.5%",
             height: "100vh",
             border: "2px solid black"
         }
@@ -225,6 +315,12 @@ class WireframeScreen extends Component {
             <div>
                 <div style={divStyle}>
                     <LeftSubscreen 
+                        wireframe={this.state.wireframe}
+                        changed={this.state.changed}
+                        // onDimensionChange={this.onDimensionChange.bind(this)}
+                        onUpdate = {this.onUpdate.bind(this)}
+                        onZoomIn = {this.onZoomIn.bind(this)}
+                        onZoomOut = {this.onZoomOut.bind(this)}
                         handleCreateControl={this.handleCreateControl.bind(this)}
                         handleSave = {this.handleSave.bind(this)}
                         handleClose = {this.handleClose.bind(this)}
@@ -234,19 +330,38 @@ class WireframeScreen extends Component {
                 <div 
                     className="middle" 
                     style={{
-                    float: "left",
-                    width: "50%",
-                    height: "100vh",
-                    border: "2px solid black"
+                        float: "left",
+                        width: "55%",
+                        height: "100vh",
+                        textAlign: "center",
+                        display: "flex", // vertical alignment
+                        justifyContent: "center", // vertical alignment
+                        alignItems: "center", // vertical alignment
+                        overflowX: "scroll",
+                        overflowY: "scroll",
+                        border: "2px solid black",
                     }}
-                    onClick={this.onClickEmpty.bind(this)}
-                >
+                >   
+                    <div 
+                        className="diagram"
+                        style={{
+                            border: "2px solid black",
+                            display: "inline-block", // horizontal alignment
+                            width: this.state.wireframe.width+"px",
+                            height: this.state.wireframe.height+"px",
+                            transformOrigin: "0 0", 
+                            transform: "scale("+this.state.scaleIndicator+")",
+                        }}
+                        onClick={this.onClickEmpty.bind(this)}
+                    >
                     <Controls 
                         controls={this.state.controls} 
+                        selected={this.state.selected}
                         handleClickControl={this.handleClickControl.bind(this)}
                         onDragStop={this.onDragStop.bind(this)}
                         onResizeStop={this.onResizeStop.bind(this)}
                     />
+                    </div>
                 </div>
 
                 <div style={divStyle}><RightSubscreen control={this.state.selected} handleChange={this.handleChange.bind(this)}/></div>

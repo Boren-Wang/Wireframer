@@ -51,3 +51,7 @@ div.banner {
 .fas {
   font-size: medium;
 }
+
+.not-selected {
+  display: None;
+}

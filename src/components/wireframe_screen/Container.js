@@ -11,13 +11,14 @@ export default class Container extends Component {
             // borderColor: props.control.borderColor,
             // borderWidth: props.control.borderThickness+"px",
             borderRadius: this.props.control.borderRadius+"px",
-            textAlign: "center"
+            textAlign: "center",
         }
+        const cornerClass = this.props.selected?"":"not-selected"
 
         return (
             <Rnd
                 style={style}
-                bounds=".middle"
+                bounds=".diagram"
                 size={{ width: this.props.control.width, height: this.props.control.height }}
                 position={{ x: this.props.control.x, y: this.props.control.y }}
                 onDragStop={(e, d) => {
@@ -28,6 +29,10 @@ export default class Container extends Component {
                     this.props.onResizeStop(e, direction, ref, delta, position, this.props.control.id)
                 }}
             >
+                <div className={cornerClass} style={{width: "10px", height: "10px", position: "absolute", top: "0", left: "0", background: "white", border: "1px solid black"}}></div>
+                <div className={cornerClass} style={{width: "10px", height: "10px", position: "absolute", top: "0", right: "0", background: "white", border: "1px solid black"}}></div>
+                <div className={cornerClass} style={{width: "10px", height: "10px", position: "absolute", bottom: "0", left: "0", background: "white", border: "1px solid black"}}></div>
+                <div className={cornerClass} style={{width: "10px", height: "10px", position: "absolute", bottom: "0", right: "0", background: "white", border: "1px solid black"}}></div>
                 {this.props.control.text}
             </Rnd>
         )
