@@ -39,6 +39,7 @@ export const createHandler = (wireframe) => {
       // make async call to database
       const firestore = getFirestore()
       const profile = getState().firebase.profile
+      console.log(profile)
       const authorId = getState().firebase.auth.uid
       const newWireframe = {
         ...wireframe,
@@ -46,9 +47,10 @@ export const createHandler = (wireframe) => {
         authorLastName: profile.lastName,
         authorId: authorId
       }
+      console.log(newWireframe)
       firestore.collection('wireframes').add(newWireframe)
-        .then(() => dispatch({type: "CREATE_LIST", newWireframe}))
-        .catch(error => dispatch({type: "CREATE_LIST_ERROR", error}))
+        .then(() => dispatch({type: "CREATE_WIREFRAME", newWireframe}))
+        .catch(error => dispatch({type: "CREATE_WIREFRAME_ERROR", error}))
   }
 }
 
@@ -56,8 +58,8 @@ export const editHandler = (wireframe) => {
   return (dispatch, getState, {getFirebase, getFirestore}) => {
       const firestore = getFirestore()
       firestore.collection('wireframes').doc(wireframe.id).update(wireframe)
-        .then(()=> dispatch({type: "EDIT_LIST", wireframe}) )
-        .catch(error => dispatch({type: "EDIT_LIST_ERROR", error}))
+        .then(()=> dispatch({type: "EDIT_WIREFRAME", wireframe}) )
+        .catch(error => dispatch({type: "EDIT_WIREFRAME_ERROR", error}))
   }
 }
 
@@ -66,40 +68,8 @@ export const deleteHandler = (wireframe) => {
   return (dispatch, getState, {getFirebase, getFirestore}) => {
     const firestore = getFirestore()
     firestore.collection('wireframes').doc(wireframe.id).delete()
-      .then(()=> dispatch({type: "DELETE_LIST", wireframe}) )
-      .catch(error => dispatch({type: "DELETE_LIST_ERROR", error}))
+      .then(()=> dispatch({type: "DELETE_WIREFRAME", wireframe}) )
+      .catch(error => dispatch({type: "DELETE_WIREFRAME_ERROR", error}))
   }
 }
 
-// export const createcontrolHandler = (wireframe, newcontrol) => {
-//   return (dispatch, getState, {getFirebase, getFirestore}) => {
-//     wireframe.controls.push(newcontrol)
-//     const firestore = getFirestore()
-//     firestore.collection('wireframes').doc(wireframe.id).update(wireframe)
-//       .then(()=> dispatch({type: "CREATE_control", newcontrol}) )
-//       .catch(error => dispatch({type: "CREATE_control_ERROR", error}))
-//   }
-// }
-
-// export const editcontrolHandler = (wireframe, newcontrol) => {
-//   return (dispatch, getState, {getFirebase, getFirestore}) => {
-//     // wireframe.controls[newcontrol.id] = newcontrol
-//     let index = wireframe.controls.indexOf(wireframe.controls.filter(control => newcontrol.id == control.id)[0])
-//     wireframe.controls[index] = newcontrol
-//     const firestore = getFirestore()
-//     firestore.collection('wireframes').doc(wireframe.id).update(wireframe)
-//       .then(()=> dispatch({type: "EDIT_control", newcontrol}) )
-//       .catch(error => dispatch({type: "EDIT_control_ERROR", error}))
-//   }
-// }
-
-// export const deletecontrolHandler = (wireframe, control) => {
-//   return (dispatch, getState, {getFirebase, getFirestore}) => {
-//     // wireframe.controls[control.id] = null
-//     wireframe.controls = wireframe.controls.filter((i)=>i.id!==control.id) 
-//     const firestore = getFirestore()
-//     firestore.collection('wireframes').doc(wireframe.id).update(wireframe)
-//       .then(()=> dispatch({type: "DELETE_control", control}) )
-//       .catch(error => dispatch({type: "DELETE_control_ERROR", error}))
-//   }
-// }

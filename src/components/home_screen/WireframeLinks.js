@@ -5,13 +5,13 @@ import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import {Button, Icon, Modal} from 'react-materialize'
 import WireframeCard from './WireframeCard';
-import {editHandler, deleteHandler} from "../../store/database/asynchHandler"
+import {editHandler} from "../../store/database/asynchHandler"
 
 class WireframeLinks extends React.Component {
     constructor() {
         super()
         this.state = {
-            
+            isModalOpen: false
         }
         this.handleClick = this.handleClick.bind(this)
     }
@@ -22,6 +22,10 @@ class WireframeLinks extends React.Component {
             editedAt: new Date()
         }
         this.props.editWireframe(newWireframe)
+    }
+
+    handleCloseModal = () => {
+        this.setState({ isModalOpen: false })
     }
 
     render() {
@@ -61,11 +65,12 @@ class WireframeLinks extends React.Component {
                             <Modal 
                                 header="Delete the wireframe?" 
                                 trigger={trigger} 
+                                open={this.state.isModalOpen}
                                 actions={
-                                    <div>
-                                        <Button className="red" onClick={ () => this.props.deleteWireframe(wireframe) }>Yes</Button>
+                                    [
+                                        <Button model="close" className="red" onClick={ () => {this.props.handleDelete(wireframe); this.handleCloseModal()} }>Yes</Button>,
                                         <Button modal="close">No</Button>
-                                    </div>
+                                    ]
                                 }
                             >
                                 <p><strong>Are you sure to delete this wireframe?</strong></p>
@@ -88,7 +93,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => ({
     editWireframe: (wireframe) => dispatch(editHandler(wireframe)),
-    deleteWireframe: (wireframe) => dispatch(deleteHandler(wireframe))
+    // deleteWireframe: (wireframe) => dispatch(deleteHandler(wireframe))
 })
 
 // export default compose(

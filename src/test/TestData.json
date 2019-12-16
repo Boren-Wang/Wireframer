@@ -2,278 +2,201 @@
     "wireframes": [
         {
             "key": 0,
-            "name": "Yelp Clone",
-            "author": "Boren Wang",
-            "height": 500,
-            "width": 300,
+            "name": "Google Clone",
+            "authorId": 0,
+            "authorFirstName": "Boren",
+            "authorLastName": "Wang",
+            "height": "500",
+            "width": "500",
             "controls": [
                 {
+                    "id": 0,
                     "key": 0,
-                    "type": "textfield",
-                    "text": "username",
+                    "type": "container",
+                    "text": "Google Clone",
                     "fontSize": 30,
                     "fontColor": "black",
                     "backgroundColor": "white",
                     "borderColor": "red",
                     "borderThickness": 5, 
                     "borderRadius": 3, 
-                    "upLeft": {
-                        "x": 10,
-                        "y": 15 
-                    },
-                    "upRight": {
-                        "x": 20,
-                        "y": 15 
-                    },
-                    "downLeft": {
-                        "x": 10,
-                        "y": 20 
-                    },
-                    "downRight": {
-                        "x": 20,
-                        "y": 20 
-                    }
+                    "x": 100,
+                    "y": 100,
+                    "width": "300px",
+                    "height": "300px"
                 },
                 {
+                    "id": 1,
                     "key": 1,
                     "type": "button",
-                    "text": "submit",
+                    "text": "Submit",
                     "fontSize": 30,
                     "fontColor": "black",
                     "backgroundColor": "white",
                     "borderColor": "red",
                     "borderThickness": 5, 
                     "borderRadius": 3, 
-                    "upLeft": {
-                        "x": 10,
-                        "y": 15 
-                    },
-                    "upRight": {
-                        "x": 30,
-                        "y": 15 
-                    },
-                    "downLeft": {
-                        "x": 10,
-                        "y": 30
-                    },
-                    "downRight": {
-                        "x": 30,
-                        "y": 30
-                    }
+                    "x": 100,
+                    "y": 100,
+                    "width": "100px",
+                    "height": "100px"
                 }
             ]
         },
         {
             "key": 1,
-            "name": "Twitter Clone",
-            "author": "Boren Wang",
+            "name": "Facebook Clone",
+            "authorId": 0,
+            "authorFirstName": "Boren",
+            "authorLastName": "Wang",
             "height": 500,
             "width": 500,
             "controls": [
                 {
+                    "id": 0,
                     "key": 0,
-                    "type": "label",
-                    "text": "password",
+                    "type": "container",
+                    "text": "Google Clone",
                     "fontSize": 30,
                     "fontColor": "black",
                     "backgroundColor": "white",
                     "borderColor": "red",
                     "borderThickness": 5, 
                     "borderRadius": 3, 
-                    "upLeft": {
-                        "x": 10,
-                        "y": 15 
-                    },
-                    "upRight": {
-                        "x": 20,
-                        "y": 15 
-                    },
-                    "downLeft": {
-                        "x": 10,
-                        "y": 20 
-                    },
-                    "downRight": {
-                        "x": 20,
-                        "y": 20 
-                    }
+                    "x": 100,
+                    "y": 100,
+                    "width": "300px",
+                    "height": "300px"
                 },
                 {
+                    "id": 1,
                     "key": 1,
-                    "type": "container",
-                    "text": "",
+                    "type": "button",
+                    "text": "Submit",
                     "fontSize": 30,
                     "fontColor": "black",
                     "backgroundColor": "white",
                     "borderColor": "red",
                     "borderThickness": 5, 
                     "borderRadius": 3, 
-                    "upLeft": {
-                        "x": 10,
-                        "y": 15 
-                    },
-                    "upRight": {
-                        "x": 30,
-                        "y": 15 
-                    },
-                    "downLeft": {
-                        "x": 10,
-                        "y": 30
-                    },
-                    "downRight": {
-                        "x": 30,
-                        "y": 30
-                    }
+                    "x": 100,
+                    "y": 100,
+                    "width": "100px",
+                    "height": "100px"
                 }
             ]
         },
         {
             "key": 2,
-            "name": "Facebook Clone",
-            "author": "Tywin Lannister",
+            "name": "Amazon Clone",
+            "authorId": 1,
+            "authorFirstName": "Tywin",
+            "authorLastName": "Lannister",
             "height": 500,
             "width": 500,
             "controls": [
                 {
+                    "id": 0,
                     "key": 0,
-                    "type": "label",
-                    "text": "password",
+                    "type": "container",
+                    "text": "Google Clone",
                     "fontSize": 30,
                     "fontColor": "black",
                     "backgroundColor": "white",
                     "borderColor": "red",
                     "borderThickness": 5, 
                     "borderRadius": 3, 
-                    "upLeft": {
-                        "x": 10,
-                        "y": 15 
-                    },
-                    "upRight": {
-                        "x": 20,
-                        "y": 15 
-                    },
-                    "downLeft": {
-                        "x": 10,
-                        "y": 20 
-                    },
-                    "downRight": {
-                        "x": 20,
-                        "y": 20 
-                    }
+                    "x": 100,
+                    "y": 100,
+                    "width": "300px",
+                    "height": "300px"
                 },
                 {
+                    "id": 1,
                     "key": 1,
-                    "type": "container",
-                    "text": "",
+                    "type": "button",
+                    "text": "Submit",
                     "fontSize": 30,
                     "fontColor": "black",
                     "backgroundColor": "white",
                     "borderColor": "red",
                     "borderThickness": 5, 
                     "borderRadius": 3, 
-                    "upLeft": {
-                        "x": 10,
-                        "y": 15 
-                    },
-                    "upRight": {
-                        "x": 30,
-                        "y": 15 
-                    },
-                    "downLeft": {
-                        "x": 10,
-                        "y": 30
-                    },
-                    "downRight": {
-                        "x": 30,
-                        "y": 30
-                    }
+                    "x": 100,
+                    "y": 100,
+                    "width": "100px",
+                    "height": "100px"
                 }
             ]
         },
         {
             "key":3,
-            "name": "Google Clone",
-            "author": "Jaime Lannister",
+            "name": "Apple Clone",
+            "authorId": 2,
+            "authorFirstName": "Jaime",
+            "authorLastName": "Lannister",
             "height": 500,
             "width": 500,
             "controls": [
                 {
+                    "id": 0,
                     "key": 0,
-                    "type": "label",
-                    "text": "password",
+                    "type": "container",
+                    "text": "Google Clone",
                     "fontSize": 30,
                     "fontColor": "black",
                     "backgroundColor": "white",
                     "borderColor": "red",
                     "borderThickness": 5, 
                     "borderRadius": 3, 
-                    "upLeft": {
-                        "x": 10,
-                        "y": 15 
-                    },
-                    "upRight": {
-                        "x": 20,
-                        "y": 15 
-                    },
-                    "downLeft": {
-                        "x": 10,
-                        "y": 20 
-                    },
-                    "downRight": {
-                        "x": 20,
-                        "y": 20 
-                    }
+                    "x": 100,
+                    "y": 100,
+                    "width": "300px",
+                    "height": "300px"
                 },
                 {
+                    "id": 1,
                     "key": 1,
-                    "type": "container",
-                    "text": "",
+                    "type": "button",
+                    "text": "Submit",
                     "fontSize": 30,
                     "fontColor": "black",
                     "backgroundColor": "white",
                     "borderColor": "red",
                     "borderThickness": 5, 
                     "borderRadius": 3, 
-                    "upLeft": {
-                        "x": 10,
-                        "y": 15 
-                    },
-                    "upRight": {
-                        "x": 30,
-                        "y": 15 
-                    },
-                    "downLeft": {
-                        "x": 10,
-                        "y": 30
-                    },
-                    "downRight": {
-                        "x": 30,
-                        "y": 30
-                    }
+                    "x": 100,
+                    "y": 100,
+                    "width": "100px",
+                    "height": "100px"
                 }
             ]
         }
     ],
     "users": [
         {
+            "id": 0,
             "key": 0,
             "type": "Administrator",
-            "email": "borwang@cs.stonybrook.edu",
+            "email": "Borwang@cs.stonybrook.edu",
             "password": "123456",
             "firstName": "Boren",
             "lastName": "Wang"
         },
         {
+            "id": 1,
             "key": 1,
             "type": "Designer",
-            "email": "tywin@harvard.edu",
+            "email": "Tywin@harvard.edu",
             "password": "123456",
-            "firstName": "tywin",
+            "firstName": "Tywin",
             "lastName": "Lannister"
         },
         {
+            "id": 2,
             "key": 2,
             "type": "Designer",
-            "email": "jaime@stanford.edu",
+            "email": "Jaime@stanford.edu",
             "password": "123456",
             "firstName": "Jaime",
             "lastName": "Lannister"

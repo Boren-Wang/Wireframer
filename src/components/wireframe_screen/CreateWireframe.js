@@ -7,10 +7,10 @@ import {createHandler} from '../../store/database/asynchHandler'
 
 class CreateList extends Component {
   state = {
-    "name": "",
+    "name": "New Wireframe",
     // "author": "", 
-    "height": "",
-    "width": "",
+    "height": "500",
+    "width": "500",
     "authorFirstName": "",
     "authorLastName": "",
     "authorId": "",
@@ -52,15 +52,15 @@ class CreateList extends Component {
           <h5 className="grey-text text-darken-3">Create a New Wireframe</h5>
           <div className="input-field">
             <label htmlFor="name" className="active">Name</label>
-            <input type="name" name="name" id="name" onChange={this.handleChange} />
+            <input type="name" name="name" id="name" value={this.state.name} onChange={this.handleChange} />
           </div>
           <div className="input-field">
             <label htmlFor="height" className="active">Height</label>
-            <input type="height" name="height" id="height" onChange={this.handleChange} />
+            <input type="height" name="height" id="height" value={this.state.height} onChange={this.handleChange} />
           </div>
           <div className="input-field">
             <label htmlFor="width" className="active">Width</label>
-            <input type="width" name="width" id="width" onChange={this.handleChange} />
+            <input type="width" name="width" id="width" value={this.state.width} onChange={this.handleChange} />
           </div>
           <div className="input-field">
             <button type="submit" className="btn pink lighten-1 z-depth-0">Create</button>
